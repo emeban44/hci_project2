@@ -7,6 +7,7 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/styling.css">
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -25,9 +26,88 @@
                 <div class="tabs "> <span id="navtext"> Team </span> <img src="img/grayline.png" style=" width: 60px; margin-left: 90px; position: relative; top:-40px; left:-10px"></div>
                 <div class="tabs "> <span id="navtext"> Services </span> <img src="img/grayline.png" style=" width: 60px; margin-left: 90px; position: relative; top:-40px; left:-10px"></div>
                 <div class="tabs last"> <span id="navtext"> Contact </span> <img src="img/grayline.png" style=" width: 60px; margin-left: 90px; position: relative; top:-40px; left:-10px"></div>
-                <div> <button id="btn"> Book an Appointment</button></div>
+                <div> <button class="btn"> Book an Appointment</button></div>
             </div>
+        </div>
+        <div class="content">
+            <div id="bookform">
+                .
+                <form id="appForm" action="#test.html" method="post">
+                    <span id="bigtext"> Book your appointment now: </span>
+                    <br><br><br>
+                    
+                    <input type="text" name="fullname" id="fullname" class="form-input" placeholder="Full Name">
+                    <p id="errorname"  style="color:red; background-color: aliceblue; margin: 2px auto; width: 220px; border:none; border-radius: 30%;">  </p> 
+                    <br>
+                    <input type="text" name="email" id="email" class="form-input" placeholder="Email">
+                    <p id="errorEmail"  style="color:red; background-color: aliceblue; margin: 2px auto; width: 220px; border:none; border-radius: 30%;">  </p> 
+                    <br>
+                    <input type="text" name="phone" id="phone" class="form-input" placeholder="Phone Number">
+                    <p id="errorphone"  style="color:red; background-color: aliceblue; margin: 2px auto; width: 200px; border:none; border-radius: 30%;">  </p> 
+                    <br>
+                    <input type="date" id="date" name="date" class="form-input" placeholder="Choose a date:">
+                    <p id="errordate"  style="color:red; background-color: aliceblue; margin: 2px auto; width: 220px; border:none; border-radius: 30%;">  </p>
+                    <br>
+                    <input type="submit" id="btn-submit" value="Book it!">
+                    
+                </form>
+            </div>
+            
         </div>
     </div>
 
 </body>
+
+<script type="text/javascript">
+
+    $(document).on("keydown", "form", function(event) { 
+        return event.key != "Enter";
+    });
+    
+    function isEmail(email){
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                return regex.test(email);
+            }
+            
+            function isName(fullName){
+                var regex = /^[a-z ,.'-]+$/i ;
+                return regex.test(fullName);
+            }
+
+            function isPhone(fullName){
+                var regex = /^[0-9]+$/i ;
+                return regex.test(fullName);
+            }
+    
+    $("#appForm").on('submit', function(event) {
+        event.preventDefault();
+        var valid = true;
+        if ($("#email").val() == "" || isEmail($("#email").val() == false)){
+             $("#errorEmail").html("Please enter a valid email!");
+              valid = false;
+         } else  $("#errorEmail").html("");
+    
+        if ($("#fullname").val() == ""){
+            $("#errorname").html("First Name field is empty!");
+            valid = false;
+        } else $("#errorname").html("");
+
+        if ($("#date").val() == ""){
+            $("#errordate").html("You must select a date!");
+            valid = false;
+        } else $("#errordate").html("");
+    
+        if ($("#phone").val() == ""){
+            $("#errorphone").html("Phone field is empty!");
+            valid = false;
+        } else if (isPhone($("#phone").val()) == false || $("#phone").val().length<9 ){
+            $("#errorphone").html("Phone must contain at least 9 numbers!");
+            valid = false;
+        } else  $("#errorphone").html("");
+     
+        if (valid) {
+            window.location.href = 'test.html'
+            
+        }  
+    });
+    </script>
