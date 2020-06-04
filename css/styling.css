@@ -143,6 +143,13 @@ body {
     margin: 0 auto;
     align-items: center;
 }
+.content-services{
+    width:1300px;
+    height:800px;
+    
+    margin: 0 auto;
+    align-items: center;
+}
 
 #bookform{
     position: relative;
@@ -165,6 +172,14 @@ body {
   }
   a:hover{
       text-decoration: underline;
+  }
+  .services{
+      margin: 10px;
+  }
+
+  .imgdiv{
+      align-items: center;
+      float:left;
   }
 
   .pagecontent{
